@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YUN YANG 雲漾｜靈魂深度診斷報告</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500;700&display=swap');
+        :root { --雲漾金: #d4b483; --背景黑: #0d0c0b; --卡片黑: #1c1916; --線條金: rgba(212, 180, 131, 0.2); }
+        body { background: var(--背景黑); font-family: 'Noto Serif TC', serif; color: #e0e0e0; margin: 0; line-height: 2.3; overflow-x: hidden; }
+        .光暈 { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 5%, #25211d 0%, var(--背景黑) 100%); z-index: -1; }
+        .容器 { max-width: 800px; margin: 0 auto; padding: 60px 20px; box-sizing: border-box; }
+        .品牌標誌 { width: 150px; display: block; margin: 0 auto 10px; filter: drop-shadow(0 0 10px rgba(212,180,131,0.3)); }
+        h1 { text-align: center; color: var(--雲漾金); letter-spacing: 8px; font-weight: 300; margin-bottom: 50px; font-size: 26px; }
+        
+        /* 啟動區 */
+        .啟動區 { text-align: center; margin-bottom: 60px; padding: 45px; border: 1px solid var(--線條金); background: rgba(0,0,0,0.4); border-radius: 2px; }
+        .輸入組 { margin-bottom: 25px; }
+        .標籤 { display: block; color: var(--雲漾金); font-size: 13px; letter-spacing: 3px; margin-bottom: 10px; }
+        input { background: none; border: none; border-bottom: 1px solid var(--線條金); font-size: 20px; width: 280px; text-align: center; color: #fff; outline: none; padding: 10px; transition: 0.4s; margin-bottom: 10px; }
+        input:focus { border-bottom: 1px solid var(--雲漾金); }
+        .主按鈕 { background: var(--雲漾金); color: #2a2218; border: none; padding: 18px 70px; font-size: 17px; font-weight: 700; cursor: pointer; margin-top: 20px; border-radius: 1px; letter-spacing: 3px; width: 300px; }
+
+        /* 報告內容樣式 */
+        #報告區域 { display: none; }
+        .章節卡片 { background: var(--卡片黑); border: 1px solid var(--線條金); padding: 50px; margin-bottom: 45px; border-radius: 1px; animation: slideUp 1s ease-out; }
+        .章節標題 { color: var(--雲漾金); font-size: 22px; border-bottom: 1px solid var(--線條金); padding-bottom: 20px; margin-bottom: 30px; letter-spacing: 5px; display: flex; justify-content: space-between; align-items: baseline; }
+        .序號 { font-size: 13px; opacity: 0.4; }
+        .子標題 { color: var(--雲漾金); font-weight: 700; margin-top: 35px; display: block; font-size: 18px; border-left: 4px solid var(--雲漾金); padding-left: 18px; letter-spacing: 2px; }
+        .解析本文 { font-size: 16.5px; color: #d5d5d5; text-align: justify; line-height: 2.3; margin-top: 15px; }
+
+        /* 五行指標 */
+        .能量條項 { margin-bottom: 30px; }
+        .能量標籤 { display: flex; justify-content: space-between; font-size: 13px; color: var(--雲漾金); margin-bottom: 10px; }
+        .進度條外 { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+        .進度條內 { height: 100%; background: linear-gradient(90deg, #b08d57, var(--雲漾金)); width: 0%; transition: width 2.5s cubic-bezier(0.22, 1, 0.36, 1); }
+
+        /* 金字塔視覺 */
+        .金字塔視覺 { display: flex; flex-direction: column; align-items: center; margin: 40px 0; }
+        .塔層 { display: flex; margin-bottom: 15px; }
+        .塔點 { width: 45px; height: 45px; line-height: 45px; text-align: center; border: 1px solid var(--線條金); border-radius: 50%; margin: 0 10px; font-size: 16px; color: var(--雲漾金); background: rgba(0,0,0,0.2); }
+        .核心點 { background: var(--雲漾金); color: #2a2218; font-weight: bold; border-color: var(--雲漾金); box-shadow: 0 0 25px rgba(212,180,131,0.5); transform: scale(1.15); }
+
+        .顯化表 { width: 100%; border-collapse: collapse; margin-top: 25px; border: 1px solid var(--線條金); }
+        .顯化表 td { padding: 20px; border: 1px solid var(--線條金); font-size: 15px; }
+        .季標題 { color: var(--雲漾金); font-weight: bold; width: 100px; text-align: center; background: rgba(212,180,131,0.05); }
+
+        .導流區 { margin-top: 50px; display: flex; flex-direction: column; gap: 15px; }
+        .按鈕 { text-decoration: none; text-align: center; padding: 20px; border: 1px solid var(--雲漾金); color: var(--雲漾金); font-size: 16px; font-weight: 600; transition: 0.4s; background: rgba(212,180,131,0.03); letter-spacing: 2px; }
+        .按鈕.強調 { background: var(--雲漾金); color: #2a2218; border: none; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+<div class="光暈"></div>
+<div class="容器">
+    <img src="IMG_0238.jpeg" alt="YUN YANG" class="品牌標誌">
+    <h1>靈魂深度診斷報告</h1>
+    
+    <div class="啟動區">
+        <div class="輸入組">
+            <span class="標籤">您的稱呼</span>
+            <input type="text" id="姓名" placeholder="例：林小明">
+        </div>
+        <div class="輸入組">
+            <span class="標籤">LINE ID</span>
+            <input type="text" id="LINE" placeholder="方便老師回覆解析">
+        </div>
+        <div class="輸入組">
+            <span class="標籤">西元生日 8 碼</span>
+            <input type="tel" id="生日碼" placeholder="19950815" maxlength="8">
+        </div>
+        <button class="主按鈕" onclick="執行診斷()">生成九大章節報告</button>
+    </div>
+
+    <div id="報告區域"></div>
+</div>
+
+<script>
+    // 補齊九大章節第七章詳細說明的資料庫
+    const SoulDatabase = {
+        1: { name: "星金淬鍊者", c: "黑銀鈦 / 白水晶", q: "如何執行能達成最高精準度？", a: "您具備極強的顯化力與秩序感，是靈魂中的秩序守護者。", plus: "強項：精準分析與流程優化。", fail: "挫折：來自環境無序與邏輯混亂。", env: "需求：確定感與環境知曉。", lead: "風格：規律與資料導向。", 
+            view: "具備「清晰度的視野」。這是一份能過濾噪音、直擊事物本質的天賦。當別人都被瑣碎資訊干擾時，您可以迅速梳理出核心邏輯，協助團隊在複雜環境中找到最正確的路徑。" },
+        2: { name: "靈水智引者", c: "海藍寶 / 馬島月光石", q: "這件事背後的深層初衷是什麼？", a: "您如深邃泉水，是靈性引導者與資源整合家。", plus: "強項：洞察力與共感天賦。", fail: "挫折：源自環境缺乏溫度與過度逐利。", env: "需求：意義感與提昇他人的空間。", lead: "風格：諮詢與直覺導向。", 
+            view: "具備「洞察力的視野」。這是一份超越肉眼的能力，能連結外在行為與內在真實動機。您能看穿人們行為背後的意圖，對於建立深度信任關係非常有幫助。" },
+        3: { name: "烈焰顯化者", c: "金太陽石 / 紅超七", q: "還有什麼新價值可以被啟動？", a: "您擁有星火能量，是天生的開創者與點火者。", plus: "強項：創新能力與全局觀點。", fail: "挫折：來自繁瑣維護與行政瑣事。", env: "需求：自主權與創意空間。", lead: "風格：任務與開創導向。", 
+            view: "具備「全局的視野」。這是一種預見力，能看見事物深層的可能性與市場藍海。您能將微弱的機會點結合成巨大的願景，引領團隊朝向未被開發的新價值前進。" },
+        4: { name: "蒼翠導航者", c: "頂級綠幽靈 / 綠髮晶", q: "現在是否為行動的最佳時機？", a: "您是節奏守護者，穩健如巨木，守護長期豐盛。", plus: "強項：執行耐力與時機嗅覺。", fail: "挫折：節奏倉促或缺乏長期規劃。", env: "需求：連結感與放緩的空間。", lead: "風格：活動與時機導向。", 
+            view: "具備「感知覺察的視野」。這是一份能捕捉時機點與潛在風險的能力。您能細膩地察覺他人遺漏的細微時間窗口，確保計畫在最穩健的時機執行並看見視野的寬廣度。" },
+        5: { name: "坤土孕育者", c: "黃水晶 / 虎眼石", q: "誰能共同整合這份資源？", a: "具備極強適應力，如同大地承載萬物。", plus: "強項：跨界整合與包容力。", fail: "挫折：失去連結感與惡性競爭。", env: "需求：穩固心理地基與信賴感。", lead: "風格：平衡與整合導向。", 
+            view: "具備「承載力的視野」。這是一種擅長觀察各方資源如何「拼湊」在一起的天賦。您能看見不同元素間的互補性，從而達成全局的穩定成長與資源整合後的豐盛收穫。" },
+        6: { name: "星金權威者", c: "金運石 / 黑銀鈦", q: "如何執行能達成最高效率？", a: "顯化力與結構感強，確保財富持續增長。", plus: "強項：細節管理與高度責任心。", fail: "挫折：來自無序變動。", env: "需求：絕對確定性。", lead: "風格：規律與流程導向。", 
+            view: "具備「極致清晰的視野」。這是一份精準識別系統中微小錯誤的能力。您能透過結構化視野確保運作精確無誤，察覺他人可能遺漏的細微隱患。" },
+        7: { name: "靈水真理者", c: "藍彼得石 / 海藍寶", q: "這件事背後的深層意義是什麼？", a: "追求絕對洞察，致力於揭示深層法則。", plus: "強項：直覺力與真理分析。", fail: "挫折：源自瑣事干擾。", env: "需求：高度安靜與研究空間。", lead: "風格：策略與分析導向。", 
+            view: "具備「真理洞察的視野」。這是一份將碎片化知識連結起來形成深層法則的能力。您能看見事物在整體循環中的位置，從制高點看清整個事件的因果循環。" },
+        8: { name: "烈焰王者", c: "鈦晶 / 金太陽太陽石", q: "誰能與我合作並放大影響力？", a: "具備大格局，成功來自「槓桿」而非勞力。", plus: "強項：社交感染力與借力能力。", fail: "挫折：權力被架空或目標不明。", env: "需求：變化性與社交互動。", lead: "風格：人脈與槓桿導向。", 
+            view: "具備「色彩的視野」。這是一份能為枯燥計畫注入生命力的天賦。您能一眼識別出帶動獲利最輕鬆的關鍵「槓桿點」，讓顯化與獲利變得更加輕鬆。" },
+        9: { name: "碧木導師", c: "全頻超七 / 極光 23", q: "如何能啟動提昇集體頻率的新價值？", a: "智慧與開創巔峰，擁有引領集體覺醒的使命。", plus: "強項：宏大願景與覺醒啟發。", fail: "挫折：來自狹隘競爭與無價值感。", env: "需求：提昇與貢獻的意義空間。", lead: "風格：願景與啟發導向。", 
+            view: "具備「覺醒的視野」。這是一份看見個人夢想如何與集體利益、自然整體連結的能力。您具備高度使命感，能引領大眾走向更高維度，將夢想轉化為真實。" }
+    };
+
+    const SeasonsDB = { wood: "碧木春季", fire: "烈焰夏季", earth: "坤土秋季", metal: "星金冬季", water: "靈水轉換" };
+    function 加法(a, b) { let s=a+b; while(s>9) s=s.toString().split('').map(Number).reduce((x,y)=>x+y,0); return s||9; }
+
+    function 執行診斷() {
+        const userName = document.getElementById('姓名').value;
+        const lineId = document.getElementById('LINE').value;
+        const input = document.getElementById('生日碼').value;
+        if(input.length !== 8) { alert("請輸入 8 碼生日 (YYYYMMDD)"); return; }
+
+        const d = input.substring(6, 8) + input.substring(4, 6) + input.substring(0, 4);
+        const l1 = d.split('').map(Number);
+        const l2 = []; for(let i=0; i<8; i+=2) l2.push(加法(l1[i], l1[i+1]));
+        const l3 = []; for(let i=0; i<4; i+=2) l3.push(加法(l2[i], l2[i+1]));
+        const peak = 加法(l3[0], l3[1]);
+
+        let energy = { metal:0, water:0, fire:0, wood:0, earth:0 };
+        const map = { 1:'metal', 6:'metal', 2:'water', 7:'water', 3:'fire', 8:'fire', 4:'wood', 9:'wood', 5:'earth' };
+        energy[map[peak]] += 30;
+        l1.forEach(n => { if(n>0) energy[map[n]] += 5; });
+        l2.concat(l3).forEach(n => { if(n>0) energy[map[n]] += 1; });
+
+        const totalE = Object.values(energy).reduce((a,b)=>a+b, 0);
+        const pcts = {
+            metal: Math.round((energy.metal/totalE)*100),
+            wood: Math.round((energy.wood/totalE)*100),
+            water: Math.round((energy.water/totalE)*100),
+            fire: Math.round((energy.fire/totalE)*100),
+            earth: Math.round((energy.earth/totalE)*100)
+        };
+
+        // --- 使用您最新的後台網址 ---
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbx8HUJBZ_N5r24CtBBW3tHNI_aGDsPs34HDUJVssO79Nj3SFzhDJnnM6USjyUd8J4S54Q/exec";
+        fetch(webAppUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({
+                timestamp: new Date().toLocaleString(),
+                name: userName || "未填寫",
+                birthday: input,
+                lineId: lineId || "未填寫",
+                peakNum: peak,
+                metal: pcts.metal + "%", wood: pcts.wood + "%", water: pcts.water + "%", fire: pcts.fire + "%", earth: pcts.earth + "%"
+            })
+        });
+
+        const res = SoulDatabase[peak];
+        const weakK = Object.keys(energy).sort((a,b)=>energy[a]-energy[b])[0];
+
+        let html = `
+            <div class="章節卡片">
+                <div class="章節標題"><span>第一章：核心靈魂原型</span><span class="序號">PAGE 01</span></div>
+                <div class="金字塔視覺">
+                    <div class="塔層"><div class="塔點 核心點">${peak}</div></div>
+                    <div class="塔層"><div class="塔點">${l3[0]}</div><div class="塔點">${l3[1]}</div></div>
+                    <div class="塔層"><div class="塔點">${l2[0]}</div><div class="塔點">${l2[1]}</div><div class="塔點">${l2[2]}</div><div class="塔點">${l2[3]}</div></div>
+                </div>
+                <div class="解析本文">核心原型：<strong>【${res.name}】</strong>。<br><br>${res.a}</div>
+            </div>
+
+            <div class="章節卡片">
+                <div class="章節標題"><span>第二章：五行能量分佈圖</span><span class="序號">PAGE 02</span></div>
+                ${Object.keys(pcts).map(k => `
+                    <div class="能量條項">
+                        <div class="能量標籤"><span>${k==='metal'?'星金':k==='water'?'靈水':k==='fire'?'烈焰':k==='wood'?'蒼翠':'坤土'}指標</span><span>${pcts[k]}%</span></div>
+                        <div class="進度條外"><div class="進度條內" style="width:${pcts[k]}%"></div></div>
+                    </div>
+                `).join('')}
+            </div>
+
+            <div class="章節卡片">
+                <div class="章節標題"><span>第三章：靈魂強項與陰影</span><span class="序號">PAGE 03</span></div>
+                <div class="解析本文">${res.plus}</div>
+                <span class="子標題">✦ 能量頻率的陰影：</span>
+                <div class="解析本文">${res.fail}</div>
+            </div>
+
+            <div class="章節卡片">
+                <div class="章節標題"><span>第四章：顯化致富關鍵提問</span><span class="序號">PAGE 04</span></div>
+                <div class="解析本文">致富關鍵提問：<strong style="color:var(--雲漾金); font-size:22px;">「${res.q}」</strong></div>
+            </div>
+
+            <div class="章節卡片">
+                <div class="章節標題"><span>第五章：社交策略與財富互聯</span><span class="序號">PAGE 05</span></div>
+                <div class="解析本文">您的社交模式由「${peak}」號原型主導。在合作中，您能透過您的獨特視野，精準鎖定對方的核心價值並達成互利。</div>
+            </div>
+
+            <div class="章節卡片">
+                <div class="章節標題"><span>第六章：心理環境與領導力</span><span class="序號">PAGE 06</span></div>
+                <div class="解析本文">${res.env}</div>
+                <span class="子標題">✦ 領導力展現：</span>
+                <div class="解析本文">${res.lead}</div>
+            </div>
+
+            <div class="章節卡片">
+                <div class="章節標題"><span>第七章：靈魂視野面向</span><span class="序號">PAGE 07</span></div>
+                <div class="解析本文">${res.view}</div>
+            </div>
+
+            <div class="章節卡片">
+                <div class="章節標題"><span>第八章：能量缺口補強</span><span class="序號">PAGE 08</span></div>
+                <div class="解析本文" style="background:rgba(212,180,131,0.08); padding:25px; border-left:4px solid var(--雲漾金);">
+                    目前您的「${SeasonsDB[weakK].slice(0,2)}」能偏低。<br><br>
+                    <strong>✦ 補強方案：${res.c}</strong>
+                </div>
+            </div>
+
+            <div class="章節卡片">
+                <div class="章節標題"><span>第九章：顯化行動計畫</span><span class="序號">PAGE 09</span></div>
+                <table class="顯化表">
+                    <tr><td class="季標題">第一階段</td><td><strong>注入木能</strong>：構思新價值。</td></tr>
+                    <tr><td class="季標題">第二階段</td><td><strong>火能放大</strong>：連結人脈槓桿。</td></tr>
+                    <tr><td class="季標題">第三階段</td><td><strong>土能穩定</strong>：穩定服務品質。</td></tr>
+                    <tr><td class="季標題">第四階段</td><td><strong>金能系統</strong>：優化運作效率。</td></tr>
+                </table>
+            </div>
+
+            <div class="導流區">
+                <a href="https://lin.ee/Nsksu05" target="_blank" class="按鈕 強調">💬 預約一對一深度能量諮詢</a>
+                <a href="https://yunyangjewelry.com/" target="_blank" class="按鈕">🌐 進入雲漾官網探索</a>
+                <a href="https://www.instagram.com/yunyang.bespoke" target="_blank" class="按鈕">📸 追蹤 Instagram 獲取指引</a>
+            </div>
+        `;
+        document.getElementById('報告區域').innerHTML = html;
+        document.getElementById('報告區域').style.display = 'block';
+        window.scrollTo({ top: document.getElementById('報告區域').offsetTop, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
+</script>
+</body>
+</html>
